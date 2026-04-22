@@ -114,6 +114,29 @@ body{display:flex;flex-direction:column}
 .search-icon{position:absolute;left:28px;top:50%;transform:translateY(-50%);font-size:14px;pointer-events:none}
 .search-clear{position:absolute;right:28px;top:50%;transform:translateY(-50%);font-size:14px;cursor:pointer;color:var(--text3);display:none}
 .search-count{font-size:10px;color:var(--text3);padding:4px 16px 0;min-height:16px}
+body.light{
+  --bg:#f4f6f9;--bg2:#ffffff;--bg3:#edf0f5;--bg4:#d8dde8;
+  --accent:#00956a;--accent2:#2563eb;--accent3:#d97706;
+  --danger:#dc2626;--text:#0f172a;--text2:#475569;--text3:#94a3b8
+}
+body.light .saldo-card{background:linear-gradient(135deg,#dbeafe 0%,#d1fae5 100%);border-color:rgba(0,149,106,.25)}
+body.light .saldo-label{color:rgba(0,100,70,.8)}
+body.light .saldo-amount{color:#00956a}
+body.light .entry-item:active{background:var(--bg4)}
+body.light .month-sep{background:var(--bg)}
+body.light .bottomnav{background:rgba(255,255,255,.95)}
+body.light .topbar{background:var(--bg2)}
+body.light .modal{background:var(--bg2)}
+body.light .splash{background:var(--bg)}
+body.light .pdf-btn{border-color:rgba(0,0,0,.15)}
+body.light .search-input{background:var(--bg3);border-color:var(--bg4);color:var(--text)}
+
+.theme-btn{
+  width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.12);
+  background:var(--bg3);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:15px;flex-shrink:0
+}
+body.light .theme-btn{border-color:rgba(0,0,0,.1)}
 </style>
 </head>
 <body>
