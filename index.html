@@ -202,7 +202,14 @@ body{display:flex;flex-direction:column}
 
   <!-- DIARIO -->
   <div class="page" id="pg-diario">
-    <div class="filter-bar" id="filterBar">
+  <div class="search-wrap">
+    <span class="search-icon">🔎</span>
+    <input id="searchInput" class="search-input" type="text" placeholder="Buscar concepto, cuenta, importe...">
+    <span id="searchClear" class="search-clear">✕</span>
+  </div>
+  <div id="searchCount" class="search-count"></div>
+
+  <div class="filter-bar" id="filterBar">
       <button class="fbtn on" onclick="filterEntries('all',this)">Todos</button>
       <button class="fbtn" onclick="filterEntries('ingreso',this)">Ingresos</button>
       <button class="fbtn" onclick="filterEntries('nomina',this)">Nóminas</button>
