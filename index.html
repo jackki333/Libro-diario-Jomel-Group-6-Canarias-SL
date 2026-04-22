@@ -625,6 +625,24 @@ function openModal(idx){
   document.getElementById("modalOverlay").classList.add("open");
 }
 function closeModal(ev){ if(ev.target===document.getElementById("modalOverlay")) document.getElementById("modalOverlay").classList.remove("open"); }
+  function toggleTheme(){
+  document.body.classList.toggle("light");
+  const isLight = document.body.classList.contains("light");
+  localStorage.setItem("theme", isLight ? "light" : "dark");
+  const btn = document.getElementById("themeBtn");
+  if(btn) btn.textContent = isLight ? "☀️" : "🌙";
+}
+
+function initTheme(){
+  const saved = localStorage.getItem("theme");
+  if(saved === "light"){
+    document.body.classList.add("light");
+  }
+  const btn = document.getElementById("themeBtn");
+  if(btn){
+    btn.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
+  }
+}
 
 // ── NAV ──────────────────────────────────────────────────────
 function showPage(name,navEl){
