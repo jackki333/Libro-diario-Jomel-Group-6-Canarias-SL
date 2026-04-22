@@ -133,12 +133,15 @@ body{display:flex;flex-direction:column}
       <div class="company-sub">Canarias SL · Aragón</div>
     </div>
   </div>
+  <div style="display:flex;align-items:center;gap:8px;">
+  <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Cambiar tema">🌙</button>
   <div class="year-toggle">
     <button class="ybtn" id="yTodo" onclick="setYear('todo')">Todo</button>
     <button class="ybtn" id="y2024" onclick="setYear(2024)">2024</button>
     <button class="ybtn on" id="y2025" onclick="setYear(2025)">2025</button>
     <button class="ybtn" id="y2026" onclick="setYear(2026)">2026</button>
   </div>
+</div>
 </div>
 
 <div class="main" id="main">
