@@ -117,14 +117,14 @@ body{display:flex;flex-direction:column}
 .pdf-btn{
   display:inline-flex;
   align-items:center;
-  gap:8px;
-  padding:10px 16px;
-  border-radius:22px;
-  border:1px solid var(--bg4);
-  background:var(--bg3);
-  color:var(--text);
+  gap:6px;
+  padding:8px 14px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.10);
+  background:transparent;
+  color:var(--text2);
   font-family:"Sora",sans-serif;
-  font-size:13px;
+  font-size:12px;
   font-weight:500;
   cursor:pointer;
   transition:.2s ease;
@@ -132,11 +132,24 @@ body{display:flex;flex-direction:column}
 
 .pdf-btn:hover{
   border-color:var(--accent2);
-  background:rgba(59,130,246,.10);
+  color:var(--text);
+  background:rgba(59,130,246,.08);
 }
 
 .pdf-btn:active{
   transform:scale(.98);
+}
+
+body.light .pdf-btn{
+  background:transparent;
+  border:1px solid rgba(0,0,0,.10);
+  color:var(--text2);
+}
+
+body.light .pdf-btn:hover{
+  color:var(--text);
+  background:rgba(0,149,106,.06);
+  border-color:rgba(0,149,106,.28);
 }
 
 body.light .pdf-btn{
