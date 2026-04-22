@@ -1,4 +1,4 @@
-const CACHE = 'jomel-v5';
+const CACHE = 'jomel-v6';
 const ASSETS = ['./index.html', './manifest.json'];
 
 self.addEventListener('install', e => {
