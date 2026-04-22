@@ -571,7 +571,27 @@ function filterEntries(tipo,btn){
 
 function buildAllEntries(){
   let pool = getEntries(activeYear);
-  if(curFilter!=="all") pool = pool.filter(e=>e.t===curFilter);
+
+if(curFilter!=="all") {
+  pool = pool.filter(e=>e.t===curFilter);
+}
+
+if(searchQuery) {
+  const q = searchQuery.toLowerCase().trim();
+  pool = pool.filter(e=>{
+    const haystack = [
+      e.c || '',
+      e.ct || '',
+      e.f || '',
+      e.mes || '',
+      String(e.d ?? ''),
+      String(e.h ?? ''),
+      String(e.s ?? '')
+    ].join(' ').toLowerCase();
+
+    return haystack.includes(q);
+  });
+}
   const el = document.getElementById("allEntries");
   if(pool.length===0){ el.innerHTML=empty(activeYear===2026?"Sin asientos en 2026 todavía":"Sin asientos con este filtro"); return; }
   let html="", lastMes="";
