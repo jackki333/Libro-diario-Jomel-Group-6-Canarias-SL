@@ -204,8 +204,8 @@ body{display:flex;flex-direction:column}
   <div class="page" id="pg-diario">
   <div class="search-wrap">
     <span class="search-icon">🔎</span>
-    <input id="searchInput" class="search-input" type="text" placeholder="Buscar concepto, cuenta, importe...">
-    <span id="searchClear" class="search-clear">✕</span>
+    <input id="searchInput" class="search-input" type="text" placeholder="Buscar concepto, cuenta, importe..." oninput="onSearch(this.value)">
+    <span id="searchClear" class="search-clear" onclick="clearSearch()">✕</span>
   </div>
   <div id="searchCount" class="search-count"></div>
 
