@@ -639,6 +639,27 @@ function installApp(){ if(deferredPrompt){ deferredPrompt.prompt(); deferredProm
 if("serviceWorker" in navigator){ window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{})); }
 
 // ── INIT ─────────────────────────────────────────────────────
+  // — INIT ______________________________________________
+
+function onSearch(val){
+  searchQuery = val.trim().toLowerCase();
+  const clear = document.getElementById("searchClear");
+  if(clear) clear.style.display = val ? "block" : "none";
+  buildAllEntries();
+}
+
+function clearSearch(){
+  const input = document.getElementById("searchInput");
+  const clear = document.getElementById("searchClear");
+  const count = document.getElementById("searchCount");
+
+  if(input) input.value = "";
+  searchQuery = "";
+  if(clear) clear.style.display = "none";
+  if(count) count.textContent = "";
+  buildAllEntries();
+}
+
 window.addEventListener("load",()=>{
   refreshAll();
   setTimeout(()=>document.getElementById("splash").classList.add("hide"),1500);
