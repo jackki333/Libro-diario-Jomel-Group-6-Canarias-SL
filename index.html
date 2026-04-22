@@ -597,6 +597,191 @@ function filterEntries(tipo,btn){
   btn.classList.add("on");
   buildAllEntries();
 }
+  
+function exportPDF(){
+  let pool = getEntries(activeYear);
+
+  if(curFilter !== "all"){
+    pool = pool.filter(e => e.t === curFilter);
+  }
+
+  if(searchQuery){
+    const q = searchQuery.toLowerCase().trim();
+    pool = pool.filter(e=>{
+      const haystack = [
+        e.c || '',
+        e.ct || '',
+        e.f || '',
+        e.mes || '',
+        String(e.d ?? ''),
+        String(e.h ?? ''),
+        String(e.s ?? '')
+      ].join(' ').toLowerCase();
+      return haystack.includes(q);
+    });
+  }
+
+  const totalEntradas = pool.reduce((a,e)=>a + (Number(e.h)||0), 0);
+  const totalSalidas = pool.reduce((a,e)=>a + (Number(e.d)||0), 0);
+  const resultado = totalEntradas - totalSalidas;
+
+  const yearLabel = activeYear === "todo" ? "Todos los años" : activeYear;
+  const filtroLabel = curFilter === "all" ? "Todos" : curFilter;
+
+  const rows = pool.map(e=>`
+    <tr>
+      <td>${e.f || ''}</td>
+      <td>${e.c || ''}</td>
+      <td>${e.ct || ''}</td>
+      <td style="text-align:right;color:#dc2626;">${e.d>0 ? fmt(e.d) : ''}</td>
+      <td style="text-align:right;color:#00956a;">${e.h>0 ? fmt(e.h) : ''}</td>
+      <td style="text-align:right;">${fmt(e.s || 0)}</td>
+      <td>${e.mes || ''}</td>
+    </tr>
+  `).join("");
+
+  const logoSrc = document.querySelector(".topbar-left img")?.src || "";
+
+  const html = `
+    <!DOCTYPE html>
+    <html lang="es">
+    <head>
+      <meta charset="UTF-8">
+      <title>Exportar PDF · Diario Jomel</title>
+      <style>
+        body{
+          font-family: Arial, sans-serif;
+          margin: 24px;
+          color:#0f172a;
+        }
+        .header{
+          display:flex;
+          align-items:center;
+          gap:16px;
+          margin-bottom:24px;
+        }
+        .header img{
+          width:64px;
+          height:64px;
+          object-fit:contain;
+          border-radius:12px;
+        }
+        .title{
+          font-size:24px;
+          font-weight:700;
+          margin:0;
+        }
+        .sub{
+          color:#475569;
+          margin-top:4px;
+          font-size:14px;
+        }
+        .meta{
+          margin:20px 0 16px;
+          font-size:14px;
+        }
+        .totals{
+          display:flex;
+          gap:12px;
+          flex-wrap:wrap;
+          margin:18px 0 22px;
+        }
+        .card{
+          border:1px solid #d8dde8;
+          border-radius:12px;
+          padding:12px 14px;
+          min-width:180px;
+          background:#f8fafc;
+        }
+        .card b{
+          display:block;
+          margin-bottom:6px;
+          font-size:12px;
+          color:#475569;
+          text-transform:uppercase;
+        }
+        .card .in{color:#00956a;font-weight:700}
+        .card .out{color:#dc2626;font-weight:700}
+        .card .res{color:${resultado >= 0 ? "#00956a" : "#dc2626"};font-weight:700}
+        table{
+          width:100%;
+          border-collapse:collapse;
+          font-size:12px;
+        }
+        th, td{
+          border:1px solid #d8dde8;
+          padding:8px 10px;
+          vertical-align:top;
+        }
+        th{
+          background:#eef2f7;
+          text-align:left;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        ${logoSrc ? `<img src="${logoSrc}" alt="Logo">` : ""}
+        <div>
+          <h1 class="title">Jomel Group 6 Canarias SL</h1>
+          <div class="sub">Libro Diario · Exportación PDF</div>
+        </div>
+      </div>
+
+      <div class="meta">
+        <div><strong>Año:</strong> ${yearLabel}</div>
+        <div><strong>Filtro:</strong> ${filtroLabel}</div>
+        <div><strong>Búsqueda:</strong> ${searchQuery || "Sin búsqueda"}</div>
+        <div><strong>Asientos:</strong> ${pool.length}</div>
+      </div>
+
+      <div class="totals">
+        <div class="card">
+          <b>Entradas</b>
+          <span class="in">${fmt(totalEntradas)}</span>
+        </div>
+        <div class="card">
+          <b>Salidas</b>
+          <span class="out">${fmt(totalSalidas)}</span>
+        </div>
+        <div class="card">
+          <b>Resultado</b>
+          <span class="res">${fmt(resultado)}</span>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Concepto</th>
+            <th>Cuenta</th>
+            <th>Debe</th>
+            <th>Haber</th>
+            <th>Saldo</th>
+            <th>Periodo</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rows || `<tr><td colspan="7">No hay datos para exportar.</td></tr>`}
+        </tbody>
+      </table>
+
+      <script>
+        window.onload = () => {
+          setTimeout(() => window.print(), 300);
+        };
+      <\/script>
+    </body>
+    </html>
+  `;
+
+  const w = window.open("", "_blank");
+  if(!w) return;
+  w.document.open();
+  w.document.write(html);
+  w.document.close();
+}
 
 function buildAllEntries(){
   let pool = getEntries(activeYear);
