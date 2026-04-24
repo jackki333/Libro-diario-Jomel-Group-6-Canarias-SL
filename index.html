@@ -32,7 +32,9 @@ body{display:flex;flex-direction:column}
 .year-toggle{display:flex;gap:3px;background:rgba(255,255,255,.06);border-radius:22px;padding:3px}
 .ybtn{font-size:10px;padding:4px 9px;border-radius:18px;border:none;background:transparent;color:var(--text2);font-family:"Sora",sans-serif;cursor:pointer;transition:all .18s;white-space:nowrap}
 .ybtn.on{background:var(--accent);color:#0a0f1e;font-weight:600}
-.main{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:calc(var(--safe-bot) + 70px)}
+.main{flex:1;overflow-y:auto;overflow-x:hidden;padding-bottom:calc(var(--safe-bot) + 70px);-webkit-overflow-scrolling:touch}
+.del-chart{touch-action:pan-y}
+.del-chart canvas{touch-action:pan-y !important}
 .main::-webkit-scrollbar{display:none}
 .section{padding:18px 16px 0}
 .section-title{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
@@ -59,6 +61,10 @@ body{display:flex;flex-direction:column}
 .chart-wrap-sm{position:relative;height:140px}
 .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 16px;margin-top:14px}
 .cat-item{background:var(--bg3);border-radius:12px;padding:12px 14px;border:1px solid rgba(255,255,255,.05)}
+body.light .cat-item{background:#fff;border:1px solid rgba(0,0,0,.1);box-shadow:0 1px 4px rgba(0,0,0,.07)}
+body.light .metric{background:#fff;border:1px solid rgba(0,0,0,.1);box-shadow:0 1px 4px rgba(0,0,0,.07)}
+body.light .chart-card{background:#fff;border:1px solid rgba(0,0,0,.1);box-shadow:0 1px 4px rgba(0,0,0,.07)}
+body.light .del-card{background:#fff;border:1px solid rgba(0,0,0,.1);box-shadow:0 1px 4px rgba(0,0,0,.07)}
 .cat-bar-wrap{height:3px;background:rgba(255,255,255,.08);border-radius:2px;margin:8px 0 6px;overflow:hidden}
 .cat-bar{height:100%;border-radius:2px;transition:width .6s ease}
 .cat-name{font-size:10px;color:var(--text2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -70,6 +76,19 @@ body{display:flex;flex-direction:column}
 .nav-label{font-size:9px;color:var(--text2);font-weight:500}
 .nav-item.active .nav-label{color:var(--accent)}
 .page{display:none}.page.active{display:block}
+#pg-delegados.active{
+  position:fixed;
+  top:var(--del-top,60px);
+  bottom:var(--del-bot,60px);
+  left:0;right:0;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+  display:block;
+  background:var(--bg);
+  scrollbar-width:none;
+  -ms-overflow-style:none;
+}
+#pg-delegados::-webkit-scrollbar{display:none}
 .filter-bar{display:flex;gap:6px;overflow-x:auto;padding:10px 16px 0;margin-top:4px}
 .filter-bar::-webkit-scrollbar{display:none}
 .fbtn{flex-shrink:0;font-size:11px;padding:5px 12px;border-radius:20px;border:1px solid rgba(255,255,255,.1);color:var(--text2);background:transparent;cursor:pointer}
@@ -102,6 +121,27 @@ body{display:flex;flex-direction:column}
 .splash-progress{height:100%;background:var(--accent);border-radius:1px;animation:load 1.4s ease forwards}
 @keyframes load{from{width:0}to{width:100%}}
 .empty-state{padding:40px 16px;text-align:center;color:var(--text3);font-size:13px}
+.del-card{margin:8px 16px 0;background:var(--bg3);border-radius:var(--r);border:1px solid rgba(255,255,255,.06);overflow:visible}
+.del-header{padding:14px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,.05)}
+.del-avatar{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.del-name{font-size:14px;font-weight:600}
+.del-meta{font-size:11px;color:var(--text2);margin-top:2px}
+.del-badge{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500;margin-left:auto;flex-shrink:0}
+.del-kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,.04)}
+.del-kpi{padding:10px 12px;background:var(--bg3)}
+.del-kpi-label{font-size:9px;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.del-kpi-val{font-size:15px;font-weight:600;font-family:"DM Mono",monospace}
+.del-section{padding:12px 16px}
+.del-section-title{font-size:10px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
+.del-chart{position:relative;height:130px;margin-bottom:4px}
+.tarj-bar-wrap{height:6px;background:rgba(255,255,255,.08);border-radius:3px;margin:6px 0 2px;overflow:hidden}
+.tarj-bar-fill{height:100%;border-radius:3px;transition:width .5s ease}
+.del-tabs{display:flex;gap:6px;padding:10px 16px 0}
+.del-tab{font-size:11px;padding:5px 12px;border-radius:16px;border:1px solid rgba(255,255,255,.1);color:var(--text2);background:transparent;cursor:pointer}
+.del-tab.on{background:var(--accent2);color:#fff;border-color:var(--accent2)}
+body.light .del-card{background:var(--bg3);border-color:rgba(0,0,0,.07)}
+body.light .del-kpis{background:rgba(0,0,0,.04)}
+body.light .del-kpi{background:var(--bg3)}
 .empty-icon{font-size:36px;margin-bottom:12px}
 .install-banner{margin:14px 16px 0;background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.25);border-radius:var(--r);padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px}
 .install-txt{font-size:12px;color:var(--text2);flex:1}
@@ -208,8 +248,8 @@ body.light .theme-btn{border-color:rgba(0,0,0,.1)}
   <div class="year-toggle">
     <button class="ybtn" id="yTodo" onclick="setYear('todo')">Todo</button>
     <button class="ybtn" id="y2024" onclick="setYear(2024)">2024</button>
-    <button class="ybtn on" id="y2025" onclick="setYear(2025)">2025</button>
-    <button class="ybtn" id="y2026" onclick="setYear(2026)">2026</button>
+    <button class="ybtn" id="y2025" onclick="setYear(2025)">2025</button>
+    <button class="ybtn on" id="y2026" onclick="setYear(2026)">2026</button>
   </div>
 </div>
 </div>
@@ -228,6 +268,11 @@ body.light .theme-btn{border-color:rgba(0,0,0,.1)}
       <div class="saldo-amount" id="mSaldo">14.278 €</div>
       <div class="saldo-detail" id="mSaldoDetail"></div>
     </div>
+    <div id="polizaCard" style="display:none;margin:10px 16px 0;background:rgba(202,138,4,.08);border:1px solid rgba(202,138,4,.25);border-radius:calc(var(--r) + 4px);padding:14px 18px;">
+      <div style="font-size:11px;color:rgba(202,138,4,.8);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;" id="polizaLabel">Póliza crédito</div>
+      <div style="font-size:18px;font-weight:600;font-family:'DM Mono',monospace;color:#ca8a04;" id="polizaMain"></div>
+      <div style="font-size:11px;color:var(--text2);margin-top:5px;display:flex;gap:14px;flex-wrap:wrap;" id="polizaSub"></div>
+    </div>
     <div class="metrics" id="metricsGrid"></div>
     <div class="section" style="margin-top:18px">
       <div class="section-title">Flujo mensual</div>
@@ -243,7 +288,7 @@ body.light .theme-btn{border-color:rgba(0,0,0,.1)}
     <div class="section">
       <div class="section-title">Facturas cobradas · Atika</div>
       <div class="chart-card" style="margin:0">
-        <div class="chart-sub">Facturación mensual · ventana cobro ~2 meses</div>
+        <div class="chart-sub">Ventas generadas · cobro ~2 meses después · ⏳ pendiente de cobro</div>
         <div id="wrapFact" style="position:relative;height:140px;"><canvas id="cFact" role="img" aria-label="Facturas cobradas"></canvas></div>
       </div>
     </div>
@@ -292,6 +337,7 @@ body.light .theme-btn{border-color:rgba(0,0,0,.1)}
       <button class="fbtn" onclick="filterEntries('asesoria',this)">Asesorías</button>
       <button class="fbtn" onclick="filterEntries('impuesto',this)">Impuestos</button>
       <button class="fbtn" onclick="filterEntries('financiero',this)">Financiero</button>
+      <button class="fbtn" onclick="filterEntries('poliza',this)">Póliza</button>
     </div>
     <div style="display:flex;gap:8px;overflow-x:auto;padding:10px 16px 0;justify-content:flex-start;">
   <button class="pdf-btn" onclick="exportPDF()">📄 Exportar PDF</button>
@@ -311,9 +357,17 @@ body.light .theme-btn{border-color:rgba(0,0,0,.1)}
   <div class="nav-item" onclick="showPage('diario',this)">
     <div class="nav-icon">≡</div><div class="nav-label">Diario</div>
   </div>
+  <div class="nav-item" onclick="showPage('delegados',this)">
+    <div class="nav-icon">👤</div><div class="nav-label">Delegados</div>
+  </div>
 </nav>
 
-<div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+<!-- DELEGADOS -->
+  <div class="page" id="pg-delegados">
+    <div id="delegadosList" style="padding:12px 0 90px;"></div>
+  </div>
+
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
   <div class="modal">
     <div class="modal-handle"></div>
     <div class="modal-title" id="mTitle"></div>
@@ -328,27 +382,110 @@ const MONTHLY_2025=[
   {m:"Ene",e:32.06,s:44682.09},{m:"Feb",e:0,s:12673.19},{m:"Mar",e:4701.56,s:10362.82},
   {m:"Abr",e:5981.82,s:11070.38},{m:"May",e:5146.60,s:9010.50},{m:"Jun",e:7410.70,s:10161.82},
   {m:"Jul",e:6954.95,s:12410.34},{m:"Ago",e:7046.52,s:9993.26},{m:"Sep",e:20349.48,s:13577.40},
-  {m:"Oct",e:5673.75,s:16085.47},{m:"Nov",e:6270.09,s:11322.43},{m:"Dic",e:8002.65,s:12262.06}
+  {m:"Oct",e:5673.75,s:16085.47},{m:"Nov",e:6270.09,s:11322.43},{m:"Dic",e:8002.65,s:19527.91}
+];
+const MONTHLY_2026=[
+  {m:"Ene",e:7994.41,s:12423.29},{m:"Feb",e:8507.57,s:15283.46},
+  {m:"Mar",e:7715.11,s:12013.95},{m:"Abr",e:9110.93,s:7937.75}
 ];
 const CATS_2024=[
   {n:"Préstamos participativos socios",v:107765.84,c:"#00e5a0"},
   {n:"Aportación capital social",v:3005,c:"#3b82f6"}
 ];
 const CATS_2025=[
-  {n:"Canon Atika",v:53500,c:"#f59e0b"},{n:"Nóminas",v:40710.19,c:"#3b82f6"},
+  {n:"Canon Atika",v:53500,c:"#f59e0b"},{n:"Nóminas",v:47723.47,c:"#3b82f6"},
   {n:"Soporte Atika",v:36145.20,c:"#8b5cf6"},{n:"Impuestos",v:12545.30,c:"#ef4444"},
   {n:"Tarjetas",v:10677.42,c:"#ec4899"},{n:"Muestras",v:5832.59,c:"#f97316"},
-  {n:"Asesorías",v:4582.06,c:"#22c55e"},{n:"Otros",v:2356.69,c:"#6b7280"},
-  {n:"Inversiones",v:1830,c:"#00e5a0"}
+  {n:"Asesorías",v:4582.06,c:"#22c55e"},{n:"Póliza · intereses",v:252.57,c:"#ca8a04"},
+  {n:"Otros",v:2356.69,c:"#6b7280"},{n:"Inversiones",v:1830,c:"#00e5a0"}
+];
+const CATS_2026=[
+  {n:"Soporte Atika",v:16881.96,c:"#8b5cf6"},
+  {n:"Nóminas",v:9079.87,c:"#3b82f6"},
+  {n:"Impuestos",v:6748.67,c:"#ef4444"},
+  {n:"SS / Autónomos",v:6677.95,c:"#888780"},
+  {n:"Finiquito + SS · Marta",v:5019.38,c:"#ef4444"},
+  {n:"Tarjetas delegados",v:4169.86,c:"#ec4899"},
+  {n:"Otros",v:2222.24,c:"#6b7280"},
+  {n:"Póliza · gastos financieros",v:775.23,c:"#ca8a04"},
+  {n:"Asesorías",v:1148.04,c:"#22c55e"},
+  {n:"Bonus Antonio",v:1430.32,c:"#3b82f6"}
 ];
 const TARJ_2025={
   m:["Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
   a:[525.28,508.70,412.96,482.98,524.71,384.21,0,498.04,801.22,853.35],
   x:[311.82,305.14,119.90,488.57,952.05,552.12,56.40,726.21,589.52,667.50]
 };
+const TARJ_2026={
+  m:["Ene","Feb","Mar","Abr"],
+  a:[464.14,591.67,776.25,501.13],
+  x:[339.78,607.95,44.20,0]
+};
+
+// ── DELEGADOS ────────────────────────────────────────────────
+const DELEGADOS = [
+  {
+    id:"antonio",
+    nombre:"Antonio García Esteras",
+    linea:"Kardia 1",
+    estado:"activo",
+    incorporacion:"Feb 2025",
+    salarioBruto:35000,
+    ventas2025:{
+      m:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
+      v:[694.30,3007.00,4507.50,5938.45,3887.25,4360.10,4721.60,2989.95,5919.43,6665.33,6872.41,7000.08]
+    },
+    ventas2026:{
+      m:["Ene","Feb","Mar"],
+      v:[4618.54,5199.38,6367.72]
+    },
+    nominas2025:[0,2042.09,1844.26,1878.92,1878.92,1878.92,2859.05,1878.92,1878.92,1878.92,1812.38,3742.20],
+    nominas2026:[1812.38,1842.72,1842.72,1430.32],
+    tarjetas2025:[0,0,525.28,508.70,412.96,482.98,524.71,384.21,0,498.04,801.22,853.35],
+    tarjetas2026:[464.14,591.67,776.25,501.13],
+    limitetarjeta:1200
+  },
+  {
+    id:"francisco",
+    nombre:"Francisco José Artal Sánchez",
+    linea:"Kardia 3",
+    estado:"activo",
+    incorporacion:"Abr 2026",
+    salarioBruto:35000,
+    ventas2025:{m:[],v:[]},
+    ventas2026:{m:[],v:[]},
+    nominas2025:[],
+    nominas2026:[],
+    tarjetas2025:[],
+    tarjetas2026:[0],
+    limitetarjeta:1200
+  },
+  {
+    id:"marta",
+    nombre:"Marta Yerud Sanz",
+    linea:"Kardia 2",
+    estado:"baja",
+    incorporacion:"Feb 2025",
+    fechaBaja:"Mar 2026",
+    salarioBruto:35000,
+    ventas2025:{
+      m:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
+      v:[6640.61,6876.60,4369.85,6609.42,7332.72,7082.12,7077.69,6226.55,3613.56,6881.70,6098.87,7080.60]
+    },
+    ventas2026:{
+      m:["Ene","Feb","Mar"],
+      v:[6943.44,8809.58,5420.86]
+    },
+    nominas2025:[0,1947.03,1552.29,1585.36,1585.36,1585.36,2413.94,1585.36,1585.36,1585.36,1585.36,3271.08],
+    nominas2026:[1584.85,1584.85,1802.70,3216.68],
+    tarjetas2025:[0,0,311.82,305.14,119.90,488.57,952.05,552.12,56.40,726.21,589.52,667.50],
+    tarjetas2026:[339.78,607.95,44.20,0],
+    limitetarjeta:1200
+  }
+];
 const FACT_2025={
-  m:["Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
-  v:[4701.56,5981.82,5146.60,7410.70,6954.95,7046.52,7349.48,5673.75,6270.09,8002.65]
+  m:["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"],
+  v:[4701.56,5981.82,5146.60,7410.70,6954.95,7046.52,7349.48,5673.75,6270.09,8002.65,7994.41,8507.57]
 };
 const TINFO={
   ingreso:{label:"Ingreso",icon:"💰",bg:"rgba(0,229,160,.12)",col:"#00e5a0"},
@@ -359,7 +496,8 @@ const TINFO={
   asesoria:{label:"Asesoría",icon:"📋",bg:"rgba(34,197,94,.12)",col:"#22c55e"},
   impuesto:{label:"Impuesto",icon:"📑",bg:"rgba(239,68,68,.12)",col:"#ef4444"},
   financiero:{label:"Financiero",icon:"🏦",bg:"rgba(245,158,11,.12)",col:"#f59e0b"},
-  otro:{label:"Otro",icon:"◦",bg:"rgba(107,114,128,.1)",col:"#6b7280"}
+  otro:{label:"Otro",icon:"◦",bg:"rgba(107,114,128,.1)",col:"#6b7280"},
+  poliza:{label:"Póliza crédito",icon:"🏦",bg:"rgba(202,138,4,.12)",col:"#ca8a04"}
 };
 const ENTRIES=[
   {f:"13/12/2024",c:"Aportación capital social · 6 socios",ct:"572/100",d:0,h:3005,s:3005,t:"financiero",mes:"Diciembre 2024",yr:2024},
@@ -460,11 +598,77 @@ const ENTRIES=[
   {f:"16/12/2025",c:"Reposición Nóminas · Cuenta Póliza",ct:"551.0",d:3868.11,h:0,s:16761.35,t:"financiero",mes:"Diciembre 2025",yr:2025},
   {f:"31/12/2025",c:"SS · Noviembre",ct:"642.0",d:2150.37,h:0,s:14365.87,t:"ss",mes:"Diciembre 2025",yr:2025},
   {f:"31/12/2025",c:"Cuota Autónomos · Diciembre",ct:"642.1",d:87.61,h:0,s:14278.26,t:"ss",mes:"Diciembre 2025",yr:2025},
-  {f:"31/12/2025",c:"Acreedores tarjeta pendientes",ct:"410.9",d:916.74,h:0,s:14278.26,t:"tarjeta",mes:"Diciembre 2025",yr:2025}
+  {f:"31/12/2025",c:"Acreedores tarjeta pendientes",ct:"410.9",d:916.74,h:0,s:14278.26,t:"tarjeta",mes:"Diciembre 2025",yr:2025},
+  {f:"10/12/2025",c:"Liquidación intereses póliza · contrato 0001769",ct:"662/521",d:252.57,h:0,s:0,t:"poliza",mes:"Diciembre 2025",yr:2025},
+  {f:"16/12/2025",c:"Paga extra diciembre · Antonio García Esteras",ct:"640/521",d:1929.82,h:0,s:0,t:"nomina",mes:"Diciembre 2025",yr:2025},
+  {f:"16/12/2025",c:"Paga extra diciembre · Marta Yerud Sanz",ct:"640/521",d:1685.72,h:0,s:0,t:"nomina",mes:"Diciembre 2025",yr:2025},
+  {f:"29/12/2025",c:"Nómina diciembre · Antonio García Esteras",ct:"640/521",d:1812.38,h:0,s:0,t:"nomina",mes:"Diciembre 2025",yr:2025},
+  {f:"29/12/2025",c:"Nómina diciembre · Marta Yerud Sanz",ct:"640/521",d:1585.36,h:0,s:0,t:"nomina",mes:"Diciembre 2025",yr:2025},
+  {f:"02/01/2026",c:"Liquidación tarjetas dic 2025 · pago",ct:"410.9/572",d:916.74,h:0,s:0,t:"tarjeta",mes:"Enero 2026",yr:2026},
+  {f:"02/01/2026",c:"Aprotimef · cuotas delegados (×2)",ct:"629/572",d:150,h:0,s:0,t:"otro",mes:"Enero 2026",yr:2026},
+  {f:"02/01/2026",c:"Asesoría Laboral · Henríquez y Portillo",ct:"623.1/572",d:64.20,h:0,s:0,t:"asesoria",mes:"Enero 2026",yr:2026},
+  {f:"09/01/2026",c:"Soporte / Muestras Atika · remesa 389",ct:"629/572",d:3226.79,h:0,s:0,t:"soporte",mes:"Enero 2026",yr:2026},
+  {f:"12/01/2026",c:"Cobro Factura 011-2025 · Ventas Nov. (cobro ene'26)",ct:"430/572",d:0,h:7994.41,s:0,t:"ingreso",mes:"Enero 2026",yr:2026,yrV:2025},
+  {f:"16/01/2026",c:"Seguro Occident · póliza anual 2026",ct:"629/572",d:534.18,h:0,s:0,t:"otro",mes:"Enero 2026",yr:2026},
+  {f:"19/01/2026",c:"Saden SL · factura 20.2025",ct:"629/572",d:605,h:0,s:0,t:"otro",mes:"Enero 2026",yr:2026},
+  {f:"20/01/2026",c:"Retenciones IRPF 2025 · 4T (Mod. 111)",ct:"475/572",d:3792.28,h:0,s:0,t:"impuesto",mes:"Enero 2026",yr:2026},
+  {f:"21/01/2026",c:"Honorarios Asesoría Fiscal · Triana",ct:"623.0/572",d:180.01,h:0,s:0,t:"asesoria",mes:"Enero 2026",yr:2026},
+  {f:"27/01/2026",c:"Between Congresos y Viajes · facturas 22811 y 22582",ct:"629/572",d:715.16,h:0,s:0,t:"otro",mes:"Enero 2026",yr:2026},
+  {f:"30/01/2026",c:"SS Régimen General · diciembre 2025",ct:"642/572",d:2150.37,h:0,s:0,t:"ss",mes:"Enero 2026",yr:2026},
+  {f:"30/01/2026",c:"Cuota Autónomos Administrador · enero 2026",ct:"642.1/572",d:88.56,h:0,s:0,t:"ss",mes:"Enero 2026",yr:2026},
+  {f:"30/01/2026",c:"Nómina enero · Antonio García Esteras",ct:"640/521",d:1812.38,h:0,s:0,t:"nomina",mes:"Enero 2026",yr:2026},
+  {f:"30/01/2026",c:"Nómina enero · Marta Yerud Sanz",ct:"640/521",d:1584.85,h:0,s:0,t:"nomina",mes:"Enero 2026",yr:2026},
+  {f:"03/02/2026",c:"Asesoría Laboral · Henríquez y Portillo",ct:"623.1/572",d:235.40,h:0,s:0,t:"asesoria",mes:"Febrero 2026",yr:2026},
+  {f:"06/02/2026",c:"Cobro Factura 012-2025 · Ventas Dic. (cobro feb'26)",ct:"430/572",d:0,h:8507.57,s:0,t:"ingreso",mes:"Febrero 2026",yr:2026,yrV:2025},
+  {f:"12/02/2026",c:"Soporte Franquicia Atika · remesa 400",ct:"629/572",d:3012.79,h:0,s:0,t:"soporte",mes:"Febrero 2026",yr:2026},
+  {f:"16/02/2026",c:"Muestras / gastos Atika · remesa 401",ct:"627/572",d:888.75,h:0,s:0,t:"soporte",mes:"Febrero 2026",yr:2026},
+  {f:"17/02/2026",c:"Soporte Atika · remesa 404",ct:"629/572",d:1698.30,h:0,s:0,t:"soporte",mes:"Febrero 2026",yr:2026},
+  {f:"24/02/2026",c:"Honorarios Asesoría Fiscal · Triana",ct:"623.0/572",d:180.01,h:0,s:0,t:"asesoria",mes:"Febrero 2026",yr:2026},
+  {f:"25/02/2026",c:"Soporte Atika · remesa 411",ct:"629/572",d:2045.84,h:0,s:0,t:"soporte",mes:"Febrero 2026",yr:2026},
+  {f:"25/02/2026",c:"Retenciones IRPF 2025 · Modelo 190",ct:"475/572",d:93.13,h:0,s:0,t:"impuesto",mes:"Febrero 2026",yr:2026},
+  {f:"26/02/2026",c:"Nómina febrero · Marta Yerud Sanz",ct:"640/521",d:1584.85,h:0,s:0,t:"nomina",mes:"Febrero 2026",yr:2026},
+  {f:"26/02/2026",c:"Nómina febrero · Antonio García Esteras",ct:"640/521",d:1842.72,h:0,s:0,t:"nomina",mes:"Febrero 2026",yr:2026},
+  {f:"26/02/2026",c:"Comisión apertura anual póliza · contrato 0001769",ct:"626/521",d:500,h:0,s:0,t:"poliza",mes:"Febrero 2026",yr:2026},
+  {f:"27/02/2026",c:"Liquidación intereses póliza · contrato 0001769",ct:"662/521",d:275.23,h:0,s:0,t:"poliza",mes:"Febrero 2026",yr:2026},
+  {f:"27/02/2026",c:"SS Régimen General · enero 2026",ct:"642/572",d:2125.95,h:0,s:0,t:"ss",mes:"Febrero 2026",yr:2026},
+  {f:"27/02/2026",c:"Cuota Autónomos Administrador · febrero",ct:"642.1/572",d:88.56,h:0,s:0,t:"ss",mes:"Febrero 2026",yr:2026},
+  {f:"03/03/2026",c:"Asesoría Laboral · Henríquez y Portillo",ct:"623.1/572",d:64.20,h:0,s:0,t:"asesoria",mes:"Marzo 2026",yr:2026},
+  {f:"05/03/2026",c:"Seguro Alan Insurance",ct:"629/572",d:8.08,h:0,s:0,t:"otro",mes:"Marzo 2026",yr:2026},
+  {f:"05/05/2026",c:"Factura 00015 · Bonus incentivos 2025 Antonio García ⏳ (vto. 05/05/2026)",ct:"430/572",d:0,h:2849.73,s:0,t:"ingreso",mes:"Mayo 2026",yr:2026,yrV:2026},
+  {f:"05/05/2026",c:"Factura 00016 · Ventas Marzo ⏳ (vto. 05/05/2026)",ct:"430/572",d:0,h:7200.84,s:0,t:"ingreso",mes:"Mayo 2026",yr:2026,yrV:2026},
+  {f:"06/03/2026",c:"Cobro Factura 00013 · Atika Pharma",ct:"430/572",d:0,h:7715.11,s:0,t:"ingreso",mes:"Marzo 2026",yr:2026},
+  {f:"06/03/2026",c:"Finiquito + pagas proporcionales · Marta Yerud Sanz",ct:"640/521",d:1802.70,h:0,s:0,t:"nomina",mes:"Marzo 2026",yr:2026},
+  {f:"12/03/2026",c:"Soporte Franquicia Atika · remesa 421",ct:"629/572",d:3012.79,h:0,s:0,t:"soporte",mes:"Marzo 2026",yr:2026},
+  {f:"12/03/2026",c:"Muestras Atika · remesa 421",ct:"627/572",d:348.82,h:0,s:0,t:"soporte",mes:"Marzo 2026",yr:2026},
+  {f:"24/03/2026",c:"Honorarios Asesoría Fiscal · Triana",ct:"623.0/572",d:180.01,h:0,s:0,t:"asesoria",mes:"Marzo 2026",yr:2026},
+  {f:"24/03/2026",c:"Gastos Atika · remesa 429",ct:"629/572",d:784.24,h:0,s:0,t:"soporte",mes:"Marzo 2026",yr:2026},
+  {f:"27/03/2026",c:"Nómina marzo · Antonio García Esteras",ct:"640/521",d:1842.72,h:0,s:0,t:"nomina",mes:"Marzo 2026",yr:2026},
+  {f:"27/03/2026",c:"Gastos Atika · remesa 433",ct:"629/572",d:178.16,h:0,s:0,t:"soporte",mes:"Marzo 2026",yr:2026},
+  {f:"31/03/2026",c:"Notaría de Triana · Xa-41/26",ct:"623.2/521",d:368.63,h:0,s:0,t:"asesoria",mes:"Marzo 2026",yr:2026},
+  {f:"31/03/2026",c:"SS Régimen General · febrero 2026",ct:"642/572",d:2125.95,h:0,s:0,t:"ss",mes:"Marzo 2026",yr:2026},
+  {f:"31/03/2026",c:"Cuota Autónomos Administrador · marzo",ct:"642.1/572",d:88.56,h:0,s:0,t:"ss",mes:"Marzo 2026",yr:2026},
+  {f:"01/04/2026",c:"Liquidación indemnización SEMAC · Marta Yerud Sanz",ct:"641/521",d:3216.68,h:0,s:0,t:"poliza",mes:"Abril 2026",yr:2026},
+  {f:"02/02/2026",c:"Liquidación tarjetas enero · Marta Yerud",ct:"629/572",d:339.78,h:0,s:0,t:"tarjeta",mes:"Febrero 2026",yr:2026},
+  {f:"02/02/2026",c:"Liquidación tarjetas enero · Antonio García",ct:"629/572",d:464.14,h:0,s:0,t:"tarjeta",mes:"Febrero 2026",yr:2026},
+  {f:"02/03/2026",c:"Liquidación tarjetas febrero · Marta Yerud",ct:"629/572",d:607.95,h:0,s:0,t:"tarjeta",mes:"Marzo 2026",yr:2026},
+  {f:"02/03/2026",c:"Liquidación tarjetas febrero · Antonio García",ct:"629/572",d:591.67,h:0,s:0,t:"tarjeta",mes:"Marzo 2026",yr:2026},
+  {f:"01/04/2026",c:"Liquidación tarjetas marzo · Marta Yerud",ct:"629/572",d:44.20,h:0,s:0,t:"tarjeta",mes:"Abril 2026",yr:2026},
+  {f:"01/04/2026",c:"Liquidación tarjetas marzo · Antonio García",ct:"629/572",d:776.25,h:0,s:0,t:"tarjeta",mes:"Abril 2026",yr:2026},
+  {f:"01/04/2026",c:"Asesoría Laboral · Henríquez y Portillo",ct:"623.1/572",d:64.20,h:0,s:0,t:"asesoria",mes:"Abril 2026",yr:2026},
+  {f:"01/04/2026",c:"Aprotimef · cuotas delegados (×2)",ct:"629/572",d:150,h:0,s:0,t:"otro",mes:"Abril 2026",yr:2026},
+  {f:"06/04/2026",c:"Cobro Factura · Santander Factoring (Atika)",ct:"430/572",d:0,h:9035.93,s:0,t:"ingreso",mes:"Abril 2026",yr:2026},
+  {f:"08/04/2026",c:"Seguro Alan Insurance · abril",ct:"629/572",d:59.82,h:0,s:0,t:"otro",mes:"Abril 2026",yr:2026},
+  {f:"10/04/2026",c:"Soporte Atika · remesa 442 (principal)",ct:"629/572",d:2370.79,h:0,s:0,t:"soporte",mes:"Abril 2026",yr:2026},
+  {f:"10/04/2026",c:"Soporte Atika · remesa 442 (complemento)",ct:"629/572",d:928.09,h:0,s:0,t:"soporte",mes:"Abril 2026",yr:2026},
+  {f:"10/04/2026",c:"Bonus incentivos cierre 2025 · Antonio García Esteras",ct:"640/521",d:1430.32,h:0,s:0,t:"nomina",mes:"Abril 2026",yr:2026},
+  {f:"13/04/2026",c:"Devolución gestión exterior · Santander",ct:"572",d:0,h:75,s:0,t:"otro",mes:"Abril 2026",yr:2026},
+  {f:"17/04/2026",c:"Honorarios Asesoría Fiscal · Triana",ct:"623.0/572",d:180.01,h:0,s:0,t:"asesoria",mes:"Abril 2026",yr:2026},
+  {f:"20/04/2026",c:"Retenciones IRPF 2026 · Modelo 111",ct:"475/572",d:2863.26,h:0,s:0,t:"impuesto",mes:"Abril 2026",yr:2026},
+  {f:"30/04/2026",c:"Liquidación tarjetas abril · Antonio García (pendiente)",ct:"629/572",d:501.13,h:0,s:0,t:"tarjeta",mes:"Abril 2026",yr:2026}
 ];
 
 // ── ESTADO ───────────────────────────────────────────────────
-let activeYear = 2025;
+let activeYear = 2026;
 let curFilter = 'all';
 let searchQuery = '';
 // Guardamos instancias de Chart para destruirlas correctamente
@@ -486,7 +690,6 @@ function freshCanvas(wrapperId, canvasId, height){
 
 function getEntries(yr){
   if(yr === "todo") return ENTRIES;
-  if(yr === 2026)   return [];
   return ENTRIES.filter(e => e.yr === yr);
 }
 
@@ -504,6 +707,8 @@ function refreshAll(){
   updateGastos();
   buildAllEntries();
   buildLastEntries();
+  const delPage = document.getElementById("pg-delegados");
+  if(delPage && delPage.classList.contains("active")) setTimeout(buildDelegados, 30);
 }
 
 // ── RESUMEN ──────────────────────────────────────────────────
@@ -511,7 +716,7 @@ function updateResumen(){
   const yr = activeYear;
 
   // Saldo
-  const saldoMap = {2024:{v:110319.84,ini:0,lbl:"Saldo banco · dic 2024 (fondos recibidos)"}, 2025:{v:14278.26,ini:110319.84,lbl:"Saldo banco · dic 2025"}, 2026:{v:14278.26,ini:14278.26,lbl:"Saldo banco · sin datos 2026"}, todo:{v:14278.26,ini:0,lbl:"Saldo banco · acumulado"}};
+  const saldoMap = {2024:{v:110319.84,ini:0,lbl:"Saldo banco · dic 2024"}, 2025:{v:14278.26,ini:110319.84,lbl:"Cta. corriente · dic 2025"}, 2026:{v:8655.29,ini:14278.26,lbl:"Cta. corriente · 23 abr 2026 · póliza: −19.908,82 €"}, todo:{v:8655.29,ini:0,lbl:"Saldo banco · acumulado"}};
   const sd = saldoMap[yr] || saldoMap.todo;
   document.querySelector(".saldo-label").textContent = sd.lbl;
   document.getElementById("mSaldo").textContent = fmt(sd.v);
@@ -520,13 +725,32 @@ function updateResumen(){
     (sd.ini > 0 ? `<span>Inicio: <b>${fmt(sd.ini)}</b></span>` : "") +
     (sd.ini > 0 ? `<span>Variación: <b style="color:${varAbs>=0?"var(--accent)":"var(--danger)"}">${varAbs>=0?"+":""}${fmt(varAbs)}</b></span>` : "");
 
+  // Póliza card
+  const pc = document.getElementById("polizaCard");
+  if(yr===2026||yr==="todo"){
+    pc.style.display="block";
+    document.getElementById("polizaLabel").textContent = "Póliza crédito · estado 23 abr 2026";
+    document.getElementById("polizaMain").textContent = "Dispuesto: 19.908,82 € · Disponible: 80.091,18 €";
+    document.getElementById("polizaSub").innerHTML =
+      `<span>Cta. corriente: <b style="color:var(--text)">8.655,29 €</b></span>` +
+      `<span>Posición neta: <b style="color:var(--danger)">−11.253,53 €</b></span>` +
+      `<span>Límite: <b style="color:var(--text)">100.000,00 €</b></span>`;
+  } else {
+    pc.style.display="none";
+  }
+
   // Métricas calculadas desde ENTRIES
   const entries = getEntries(yr);
-  const totalH = entries.reduce((s,e)=>s+e.h,0);
   const totalD = entries.reduce((s,e)=>s+e.d,0);
-  const facturas = entries.filter(e=>e.t==="ingreso");
-  const factMedia = facturas.length > 0 ? (facturas.reduce((s,e)=>s+e.h,0)/facturas.length) : 0;
-  const meses = {2024:1, 2025:12, 2026:0, todo:13}[yr] || 12;
+  // Facturas por año de VENTAS (yrV) no de cobro (yr)
+  const allIngresos = ENTRIES.filter(e=>e.t==="ingreso");
+  const facturas = yr==="todo"
+    ? allIngresos
+    : allIngresos.filter(e=>(e.yrV||e.yr)===yr);
+  const totalHFact = facturas.reduce((s,e)=>s+e.h,0);
+  const factMedia = facturas.length > 0 ? (totalHFact/facturas.length) : 0;
+  const totalH = totalHFact + entries.filter(e=>e.t!=="ingreso").reduce((s,e)=>s+e.h,0);
+  const meses = {2024:1, 2025:12, 2026:4, todo:17}[yr] || 12;
   const gastoMes = meses > 0 ? totalD/meses : 0;
 
   document.getElementById("metricsGrid").innerHTML = `
@@ -544,7 +768,7 @@ function updateResumen(){
       <div class="metric-sub">${factMedia>0?"€ por cobro":"sin datos"}</div></div>`;
 
   // Gráfico flujo — siempre recrear canvas antes de dibujar
-  const monthly = yr===2024 ? MONTHLY_2024 : yr===2025 ? MONTHLY_2025 : yr==="todo" ? [...MONTHLY_2024,...MONTHLY_2025] : [];
+  const monthly = yr===2024 ? MONTHLY_2024 : yr===2025 ? MONTHLY_2025 : yr===2026 ? MONTHLY_2026 : [...MONTHLY_2024,...MONTHLY_2025,...MONTHLY_2026];
   if(CHARTS.flujo){ CHARTS.flujo.destroy(); CHARTS.flujo=null; }
   if(monthly.length === 0){
     document.getElementById("wrapFlujo").innerHTML = empty("Sin datos de flujo para 2026 todavía");
@@ -560,13 +784,16 @@ function updateResumen(){
   }
 
   // Gráfico facturas
-  const factData = (yr===2025||yr==="todo") ? FACT_2025 : null;
+  const factData = yr==="todo" ? {m:[...FACT_2025.m,...["Ene'26","Feb'26","Mar'26 ⏳"]],v:[...FACT_2025.v,...[7715.11,9035.93,7200.84]]} : yr===2025 ? FACT_2025 : yr===2026 ? {m:["Ene","Feb","Mar ⏳"],v:[7715.11,9035.93,7200.84]} : null;
   if(CHARTS.fact){ CHARTS.fact.destroy(); CHARTS.fact=null; }
   if(!factData){
     document.getElementById("wrapFact").innerHTML = empty("Sin facturas Atika en este periodo");
   } else {
     const cv2 = freshCanvas("wrapFact","cFact","140px");
-    CHARTS.fact = new Chart(cv2,{type:"line",data:{labels:factData.m,datasets:[{data:factData.v,borderColor:"#00e5a0",backgroundColor:"rgba(0,229,160,.08)",pointBackgroundColor:"#00e5a0",pointRadius:4,fill:true,tension:.3,borderWidth:2}]},
+    const isPending = factData.m[factData.m.length-1].includes("⏳");
+    const ptColors = factData.m.map((m,i)=> (isPending && i===factData.m.length-1) ? "#f59e0b" : "#00e5a0");
+    const ptRadius = factData.m.map((m,i)=> (isPending && i===factData.m.length-1) ? 6 : 4);
+    CHARTS.fact = new Chart(cv2,{type:"line",data:{labels:factData.m,datasets:[{data:factData.v,borderColor:"#00e5a0",backgroundColor:"rgba(0,229,160,.08)",pointBackgroundColor:ptColors,pointRadius:ptRadius,fill:true,tension:.3,borderWidth:2}]},
       options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>" "+fmt(ctx.parsed.y)}}},
       scales:{x:{grid:{display:false},ticks:{color:"#8899bb",font:{size:9},maxRotation:0}},y:{grid:{color:"rgba(255,255,255,.04)"},ticks:{color:"#8899bb",font:{size:9},callback:v=>fmtK(v)}}}}});
   }
@@ -580,15 +807,15 @@ function updateGastos(){
   let cats;
   if(yr===2024) cats = CATS_2024;
   else if(yr===2025) cats = CATS_2025;
-  else if(yr===2026) cats = [];
+  else if(yr===2026) cats = CATS_2026;
   else {
     const m={};
-    [...CATS_2024,...CATS_2025].forEach(c=>{ m[c.n] ? m[c.n].v+=c.v : (m[c.n]={...c}); });
+    [...CATS_2024,...CATS_2025,...CATS_2026].forEach(c=>{ m[c.n] ? m[c.n].v+=c.v : (m[c.n]={...c}); });
     cats = Object.values(m).sort((a,b)=>b.v-a.v);
   }
   const total = cats.reduce((s,c)=>s+c.v,0);
   document.getElementById("catGrid").innerHTML = cats.length===0
-    ? `<div style="grid-column:1/-1">${empty("Sin datos de gastos para 2026 todavía")}</div>`
+    ? `<div style="grid-column:1/-1">${empty("Sin datos")}</div>`
     : cats.map(c=>`
       <div class="cat-item">
         <div class="cat-name">${c.n}</div>
@@ -598,23 +825,26 @@ function updateGastos(){
       </div>`).join("");
 
   // Gráfico tarjetas
-  const tarjData = (yr===2025||yr==="todo") ? TARJ_2025 : null;
+  const tarjData = yr===2026 ? TARJ_2026 : (yr===2025||yr==="todo") ? TARJ_2025 : null;
   if(CHARTS.tarj){ CHARTS.tarj.destroy(); CHARTS.tarj=null; }
   if(!tarjData){
     document.getElementById("wrapTarj").innerHTML = empty("Sin datos de tarjetas en este periodo");
   } else {
     const cv = freshCanvas("wrapTarj","cTarj","140px");
     CHARTS.tarj = new Chart(cv,{type:"bar",data:{labels:tarjData.m,datasets:[
-      {data:tarjData.a,backgroundColor:"rgba(59,130,246,.75)",borderRadius:2,barPercentage:.6},
-      {data:tarjData.x,backgroundColor:"rgba(212,83,126,.75)",borderRadius:2,barPercentage:.6}
-    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>" "+fmt(ctx.parsed.y)}}},
+      {label:"Antonio",data:tarjData.a,backgroundColor:"rgba(59,130,246,.75)",borderRadius:2,barPercentage:.6},
+      {label:"Marta",data:tarjData.x,backgroundColor:"rgba(212,83,126,.75)",borderRadius:2,barPercentage:.6}
+    ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{title:ctx=>ctx[0].dataset.label,label:ctx=>" "+fmt(ctx.parsed.y)}}},
       scales:{x:{grid:{display:false},ticks:{color:"#8899bb",font:{size:9},maxRotation:0}},y:{grid:{color:"rgba(255,255,255,.04)"},ticks:{color:"#8899bb",font:{size:9},callback:v=>v+"€"}}}}});
   }
 
   // Nóminas
   let nomHtml;
   if(yr===2024) nomHtml=`<div class="metric wide"><div class="metric-label">Financiación inicial recibida</div><div class="metric-value green" style="font-size:18px">110.320 €</div><div class="metric-sub">Préstamos participativos + capital social · dic 2024</div></div>`;
-  else if(yr===2026) nomHtml=`<div class="metric wide"><div class="metric-label">Sin datos 2026</div><div class="metric-value" style="font-size:13px;color:var(--text3)">Pendiente de registrar</div></div>`;
+  else if(yr===2026) nomHtml=`
+    <div class="metric"><div class="metric-label">Antonio (ene–abr)</div><div class="metric-value blue" style="font-size:18px">8.928 €</div><div class="metric-sub">4 nóminas + bonus incentivos</div></div>
+    <div class="metric"><div class="metric-label">Marta (ene–mar)</div><div class="metric-value" style="font-size:18px;color:#d4537e">6.187 €</div><div class="metric-sub">3 nóminas + finiquito proporcional</div></div>
+    <div class="metric wide"><div class="metric-label">Póliza crédito · estado 23 abr 2026</div><div class="metric-value" style="font-size:16px;color:#ca8a04">Dispuesto: 19.908,82 € · Disponible: 80.091,18 €</div><div class="metric-sub">Cta. corriente: 8.655,29 € · Posición neta: −11.253,53 €</div></div>`;
   else nomHtml=`
     <div class="metric"><div class="metric-label">Antonio</div><div class="metric-value blue" style="font-size:18px">22.790 €</div><div class="metric-sub">incl. paga extra jul</div></div>
     <div class="metric"><div class="metric-label">Marta</div><div class="metric-value" style="font-size:18px;color:#d4537e">19.553 €</div><div class="metric-sub">incl. paga extra jul</div></div>
@@ -830,6 +1060,9 @@ function exportPDF(){
   w.document.close();
 }
 
+// Parsea fecha "DD/MM/YYYY" a timestamp para ordenar
+function parseDate(f){ const p=f.split('/'); return new Date(p[2],p[1]-1,p[0]).getTime(); }
+
 function buildAllEntries(){
   let pool = getEntries(activeYear);
 
@@ -853,19 +1086,23 @@ if(searchQuery) {
     return haystack.includes(q);
   });
 }
+  // Ordenar cronológicamente inverso (más reciente primero)
+  pool = [...pool].sort((a,b)=>parseDate(b.f)-parseDate(a.f));
   const el = document.getElementById("allEntries");
-  if(pool.length===0){ el.innerHTML=empty(activeYear===2026?"Sin asientos en 2026 todavía":"Sin asientos con este filtro"); return; }
+  if(pool.length===0){ el.innerHTML=empty("Sin asientos con este filtro"); return; }
   let html="", lastMes="";
   pool.forEach(e=>{ if(e.mes!==lastMes){html+=`<div class="month-sep">${e.mes}</div>`;lastMes=e.mes;} html+=entryHTML(e); });
   el.innerHTML=html;
 }
 
 function buildLastEntries(){
-  const pool = getEntries(activeYear);
-  const last = [...pool].reverse().slice(0,12);
-  document.getElementById("lastEntries").innerHTML = last.length===0
+  const pool = [...getEntries(activeYear)]
+    .filter(e=>!e.c.includes("⏳"))
+    .sort((a,b)=>parseDate(b.f)-parseDate(a.f))
+    .slice(0,12);
+  document.getElementById("lastEntries").innerHTML = pool.length===0
     ? empty("Sin movimientos en este periodo")
-    : last.map(e=>entryHTML(e)).join("");
+    : pool.map(e=>entryHTML(e)).join("");
 }
 
 // ── MODAL ─────────────────────────────────────────────────────
@@ -908,7 +1145,14 @@ function showPage(name,navEl){
   document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
   document.getElementById("pg-"+name).classList.add("active");
   navEl.classList.add("active");
-  document.getElementById("main").scrollTop=0;
+  document.getElementById("main").scrollTop = 0;
+  if(name==="delegados"){
+    const topH = document.querySelector(".topbar").offsetHeight;
+    const botH = document.querySelector(".bottomnav").offsetHeight;
+    document.documentElement.style.setProperty("--del-top", topH+"px");
+    document.documentElement.style.setProperty("--del-bot", botH+"px");
+    setTimeout(buildDelegados, 30);
+  }
 }
 
 // ── PWA ──────────────────────────────────────────────────────
@@ -917,6 +1161,178 @@ window.addEventListener("beforeinstallprompt",e=>{ e.preventDefault(); deferredP
 function installApp(){ if(deferredPrompt){ deferredPrompt.prompt(); deferredPrompt.then(()=>{ deferredPrompt=null; document.getElementById("installBanner").style.display="none"; }); } }
 if("serviceWorker" in navigator){ window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{})); }
 
+
+// ── DELEGADOS ─────────────────────────────────────────────────
+let delYear = 2025;
+const DEL_CHARTS = {};
+
+function buildDelegados(){
+  const el = document.getElementById("delegadosList");
+  el.innerHTML = DELEGADOS.map(d => `
+    <div class="del-card">
+      <div class="del-header">
+        <div class="del-avatar" style="background:${d.estado==='activo'?'rgba(0,229,160,.15)':'rgba(239,68,68,.12)'}">
+          ${d.estado==='activo'?'🟢':'🔴'}
+        </div>
+        <div>
+          <div class="del-name">${d.nombre}</div>
+          <div class="del-meta">${d.linea} · Desde ${d.incorporacion}${d.fechaBaja?' · Baja '+d.fechaBaja:''}</div>
+        </div>
+        <span class="del-badge" style="background:${d.estado==='activo'?'rgba(0,229,160,.15)':'rgba(239,68,68,.1)'};color:${d.estado==='activo'?'var(--accent)':'var(--danger)'}">
+          ${d.estado==='activo'?'Activo':'Baja'}
+        </span>
+      </div>
+      <div class="del-tabs">
+        <button class="del-tab on" onclick="setDelTab('${d.id}','ventas',this)">Ventas</button>
+        <button class="del-tab" onclick="setDelTab('${d.id}','costes',this)">Costes</button>
+        <button class="del-tab" onclick="setDelTab('${d.id}','tarjeta',this)">Tarjeta</button>
+      </div>
+      <div id="tab-ventas-${d.id}" class="del-section">
+        <div class="del-section-title">Ventas mensuales · €</div>
+        <div class="del-chart"><canvas id="cv-ventas-${d.id}"></canvas></div>
+        <div id="kpis-ventas-${d.id}" class="del-kpis" style="border-radius:0 0 var(--r) var(--r);overflow:hidden"></div>
+      </div>
+      <div id="tab-costes-${d.id}" class="del-section" style="display:none">
+        <div class="del-section-title">Ventas vs coste mensual · €</div>
+        <div class="del-chart"><canvas id="cv-costes-${d.id}"></canvas></div>
+        <div id="kpis-costes-${d.id}" class="del-kpis" style="border-radius:0 0 var(--r) var(--r);overflow:hidden"></div>
+      </div>
+      <div id="tab-tarjeta-${d.id}" class="del-section" style="display:none">
+        <div class="del-section-title">Gasto tarjeta empresa · límite 1.200 €</div>
+        <div id="tarjeta-bars-${d.id}"></div>
+        <div id="kpis-tarjeta-${d.id}" class="del-kpis" style="border-radius:0 0 var(--r) var(--r);overflow:hidden;margin-top:8px"></div>
+      </div>
+    </div>`).join('');
+
+  DELEGADOS.forEach(d => renderDelegado(d));
+}
+
+function setDelTab(id, tab, btn){
+  ['ventas','costes','tarjeta'].forEach(t => {
+    const el = document.getElementById(`tab-${t}-${id}`);
+    if(el) el.style.display = t===tab ? 'block' : 'none';
+  });
+  btn.closest('.del-card').querySelectorAll('.del-tab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  if(tab==='ventas'||tab==='costes') renderDelegado(DELEGADOS.find(d=>d.id===id));
+  if(tab==='tarjeta') renderTarjetaBars(DELEGADOS.find(d=>d.id===id));
+}
+
+function renderDelegado(d){
+  const yr = activeYear;
+  const ventas = yr===2026 ? d.ventas2026 : yr==='todo' ? {
+    m:[...d.ventas2025.m, ...d.ventas2026.m.map(m=>m+"'26")],
+    v:[...d.ventas2025.v,...d.ventas2026.v]
+  } : d.ventas2025;
+  const nominas = yr===2026 ? d.nominas2026 : yr==='todo' ? [...d.nominas2025,...d.nominas2026] : d.nominas2025;
+  const tarjetas = yr===2026 ? d.tarjetas2026 : yr==='todo' ? [...d.tarjetas2025,...d.tarjetas2026] : d.tarjetas2025;
+
+  // Ventas chart
+  const cvKey = `ventas-${d.id}`;
+  if(DEL_CHARTS[cvKey]) DEL_CHARTS[cvKey].destroy();
+  const cvEl = document.getElementById(`cv-ventas-${d.id}`);
+  if(cvEl && ventas.v.length > 0){
+    DEL_CHARTS[cvKey] = new Chart(cvEl,{
+      type:'bar',
+      data:{labels:ventas.m, datasets:[{
+        data:ventas.v,
+        backgroundColor: d.id==='antonio' ? 'rgba(59,130,246,.7)' : 'rgba(212,83,126,.7)',
+        borderRadius:3, barPercentage:.65
+      }]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmt(ctx.parsed.y)}}},
+        scales:{x:{grid:{display:false},ticks:{color:'#8899bb',font:{size:9},maxRotation:0}},
+          y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#8899bb',font:{size:9},callback:v=>(v/1000).toFixed(1)+'k'}}}}
+    });
+  }
+
+  // Ventas KPIs
+  const totalV = ventas.v.length>0 ? ventas.v.reduce((s,v)=>s+v,0) : 0;
+  const maxV = ventas.v.length>0 ? Math.max(...ventas.v) : 0;
+  const mediaV = ventas.v.filter(v=>v>0).length>0 ? totalV/ventas.v.filter(v=>v>0).length : 0;
+  if(ventas.v.length===0){
+    document.getElementById(`cv-ventas-${d.id}`).parentElement.innerHTML=`<div class="empty-state" style="padding:20px"><div class="empty-icon">📭</div>Sin ventas registradas aún</div>`;
+  }
+  document.getElementById(`kpis-ventas-${d.id}`).innerHTML = ventas.v.length===0 ? `
+    <div class="del-kpi del-kpi--wide" style="grid-column:1/-1"><div class="del-kpi-label">Incorporación</div><div class="del-kpi-val" style="font-size:13px;color:var(--text2)">Kardia 3 · desde ${d.incorporacion}</div></div>` : `
+    <div class="del-kpi"><div class="del-kpi-label">Total</div><div class="del-kpi-val" style="color:${d.id==='antonio'?'#3b82f6':'#d4537e'}">${(totalV/1000).toFixed(1)}k</div></div>
+    <div class="del-kpi"><div class="del-kpi-label">Media/mes</div><div class="del-kpi-val">${(mediaV/1000).toFixed(1)}k</div></div>
+    <div class="del-kpi"><div class="del-kpi-label">Mejor mes</div><div class="del-kpi-val" style="color:var(--accent)">${(maxV/1000).toFixed(1)}k</div></div>`;
+
+  // Costes chart
+  const ckKey = `costes-${d.id}`;
+  if(DEL_CHARTS[ckKey]) DEL_CHARTS[ckKey].destroy();
+  const ckEl = document.getElementById(`cv-costes-${d.id}`);
+  const meses = yr===2026 ? ['Ene','Feb','Mar','Abr'] : yr==='todo' ?
+    [...d.ventas2025.m,...d.ventas2026.m.map(m=>m+"'26")] : d.ventas2025.m;
+  const costesData = meses.map((_,i) => (nominas[i]||0) + (tarjetas[i]||0));
+  const ventasData = yr===2026 ? d.ventas2026.v : yr==='todo' ? [...d.ventas2025.v,...d.ventas2026.v] : d.ventas2025.v;
+
+  if(ckEl && meses.length > 0 && (ventasData.length>0 || costesData.some(v=>v>0))){
+    DEL_CHARTS[ckKey] = new Chart(ckEl,{
+      type:'bar',
+      data:{labels:meses, datasets:[
+        {label:'Ventas',data:ventasData,backgroundColor:'rgba(0,229,160,.65)',borderRadius:3,barPercentage:.55},
+        {label:'Coste',data:costesData,backgroundColor:'rgba(239,68,68,.6)',borderRadius:3,barPercentage:.55}
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: `+fmt(ctx.parsed.y)}}},
+        scales:{x:{grid:{display:false},ticks:{color:'#8899bb',font:{size:9},maxRotation:0}},
+          y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#8899bb',font:{size:9},callback:v=>(v/1000).toFixed(1)+'k'}}}}
+    });
+  }
+
+  const totalC = costesData.reduce((s,v)=>s+v,0);
+  const totalVc = ventasData.reduce((s,v)=>s+v,0);
+  const ratio = totalC > 0 ? (totalVc/totalC).toFixed(2) : '—';
+  const resultado = totalVc - totalC;
+  if(meses.length===0||(!ventasData.length&&!costesData.some(v=>v>0))){
+    document.getElementById(`cv-costes-${d.id}`).parentElement.innerHTML=`<div class="empty-state" style="padding:20px"><div class="empty-icon">📭</div>Sin datos de costes aún</div>`;
+  }
+  document.getElementById(`kpis-costes-${d.id}`).innerHTML = meses.length===0 ? `
+    <div class="del-kpi" style="grid-column:1/-1"><div class="del-kpi-label">Nóminas</div><div class="del-kpi-val" style="font-size:13px;color:var(--text2)">Pendiente · pago día 27 del mes</div></div>` : `
+    <div class="del-kpi"><div class="del-kpi-label">Coste total</div><div class="del-kpi-val" style="color:var(--danger)">${(totalC/1000).toFixed(1)}k</div></div>
+    <div class="del-kpi"><div class="del-kpi-label">Ratio v/c</div><div class="del-kpi-val" style="color:${ratio>=1?'var(--accent)':'var(--danger)'}">${ratio}x</div></div>
+    <div class="del-kpi"><div class="del-kpi-label">Margen bruto</div><div class="del-kpi-val" style="color:${resultado>=0?'var(--accent)':'var(--danger)'}">${resultado>=0?'+':''}${(resultado/1000).toFixed(1)}k</div></div>`;
+
+  // Tarjeta bars
+  renderTarjetaBars(d);
+}
+
+function renderTarjetaBars(d){
+  const yr = activeYear;
+  const meses = yr===2026 ? ['Ene','Feb','Mar','Abr'] : yr===2024 ? [] :
+    yr==='todo' ? ['Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic','Ene','Feb','Mar','Abr'] :
+    ['Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+  const tarjetas = yr===2026 ? d.tarjetas2026 :
+    yr==='todo' ? [...d.tarjetas2025.slice(2),...d.tarjetas2026] :
+    d.tarjetas2025.slice(2);
+
+  const container = document.getElementById(`tarjeta-bars-${d.id}`);
+  if(!container) return;
+  if(tarjetas.length === 0){ container.innerHTML = `<div class="empty-state" style="padding:20px"><div class="empty-icon">📭</div>Sin datos en este periodo</div>`; return; }
+
+  container.innerHTML = meses.map((m,i) => {
+    const v = tarjetas[i] || 0;
+    const pct = Math.min(100, Math.round(v/d.limitetarjeta*100));
+    const col = pct>=100?'#ef4444':pct>=80?'#f59e0b':'var(--accent)';
+    return `<div style="padding:6px 16px">
+      <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text2)">
+        <span>${m}</span>
+        <span style="font-family:'DM Mono',monospace;color:${col}">${fmt(v)} <span style="color:var(--text3)">(${pct}%)</span></span>
+      </div>
+      <div class="tarj-bar-wrap"><div class="tarj-bar-fill" style="width:${pct}%;background:${col}"></div></div>
+    </div>`;
+  }).join('');
+
+  const totalT = tarjetas.reduce((s,v)=>s+v,0);
+  const mediaT = tarjetas.filter(v=>v>0).length > 0 ? totalT/tarjetas.filter(v=>v>0).length : 0;
+  const maxT = Math.max(...tarjetas);
+  document.getElementById(`kpis-tarjeta-${d.id}`).innerHTML = `
+    <div class="del-kpi"><div class="del-kpi-label">Total periodo</div><div class="del-kpi-val" style="color:#ec4899">${(totalT/1000).toFixed(1)}k</div></div>
+    <div class="del-kpi"><div class="del-kpi-label">Media/mes</div><div class="del-kpi-val">${fmt(mediaT)}</div></div>
+    <div class="del-kpi"><div class="del-kpi-label">Mes máximo</div><div class="del-kpi-val" style="color:${maxT>d.limitetarjeta?'var(--danger)':'var(--amber,#f59e0b)'}">${fmt(maxT)}</div></div>`;
+}
 // ── INIT ─────────────────────────────────────────────────────
   // — INIT ______________________________________________
 
